@@ -1,0 +1,24 @@
+name: VerifyGuard API & Cert Health Check
+
+on:
+  schedule:
+    - cron: '17 13 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run health check
+        env:
+          SIGHTENGINE_USER: ${{ secrets.SIGHTENGINE_USER }}
+          SIGHTENGINE_SECRET: ${{ secrets.SIGHTENGINE_SECRET }}
+          GNEWS_KEY: ${{ secrets.GNEWS_KEY }}
+          VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/health-check.js
