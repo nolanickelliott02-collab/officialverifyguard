@@ -34,7 +34,7 @@
 <main>
   <div class="wrap legal">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: July 8, 2026</p>
+    <p class="updated">Last updated: July 18, 2026</p>
 
     <p>VerifyGuard ("we," "our," "us") builds tools to help you identify scams, deepfakes, and misinformation. This Privacy Policy explains what information VerifyGuard collects, how it's used, and the choices you have. It applies to the VerifyGuard iOS app and the officialverifyguard.com website.</p>
 
@@ -45,8 +45,10 @@
       <li><strong>Photos</strong> you choose from your library or camera, for AI-generated / deepfake and manipulation detection.</li>
       <li><strong>Links or text</strong> you enter or scan from Control Center (via clipboard access), for scam and phishing detection.</li>
       <li><strong>News search terms</strong> you enter, to check outlet coverage and bias.</li>
+      <li><strong>URLs you ask us to investigate</strong> (Guardian tier's Deep Investigation feature). An AI agent browses the page and looks up the domain's registration record to write a detailed verdict.</li>
+      <li><strong>Emails you forward</strong> to your personal VerifyGuard forwarding address (Guardian tier's Forward-to-Scan feature). We analyze the sender, subject, and body content to check for phishing, then email you back a verdict. We do not store forwarded email content — it's processed transiently and discarded once a verdict is generated.</li>
     </ul>
-    <p>VerifyGuard does not scan your photo library, clipboard, or browsing activity in the background. Scans only happen when you initiate them.</p>
+    <p>VerifyGuard does not scan your photo library, clipboard, email inbox, or browsing activity in the background. Scans only happen when you initiate them — including forwarding an email, which only analyzes that one message, never your inbox as a whole.</p>
     <p><strong>Usage data.</strong> We keep a daily count of scans used against your plan's limit, and basic app diagnostics (crash logs, feature usage) to keep the service reliable.</p>
     <p><strong>Purchase information.</strong> Subscription purchases are handled entirely by Apple's App Store / StoreKit. We receive confirmation of your active tier, not your payment details.</p>
 
@@ -56,6 +58,7 @@
       <li>To enforce daily scan limits tied to your subscription tier.</li>
       <li>To send scan results and, on Pro and Guardian plans, real-time scam alert notifications.</li>
       <li>To operate the AI pattern engine that surfaces emerging scam trends in the app's Scampedia feed. This uses aggregated pattern data, not your personal content.</li>
+      <li>To investigate a URL you submit (Deep Investigation) or an email you forward (Forward-to-Scan) using an AI agent, and to email or display the resulting verdict back to you.</li>
       <li>To provide customer support when you contact us.</li>
       <li>To maintain security and prevent abuse of the service.</li>
     </ul>
@@ -67,6 +70,8 @@
       <tr><td>Sightengine</td><td>The image you submit</td><td>AI-generated image / deepfake detection</td></tr>
       <tr><td>GNews</td><td>Your news search query</td><td>Real-time article coverage and outlet bias data</td></tr>
       <tr><td>VirusTotal</td><td>The URL you submit</td><td>Reputation check against 70+ antivirus/security engines</td></tr>
+      <tr><td>Anthropic (Claude)</td><td>The URL/page content you ask us to investigate, or the forwarded email's content, sender, and subject</td><td>AI-driven analysis to produce a Deep Investigation or Forward-to-Scan verdict</td></tr>
+      <tr><td>SendGrid</td><td>Your account email address and the resulting verdict</td><td>Delivering Forward-to-Scan results back to you by email</td></tr>
       <tr><td>Apple (StoreKit / Sign in with Apple)</td><td>Purchase and/or sign-in identifiers</td><td>Subscription management and optional authentication</td></tr>
     </table>
     <p>These providers process the data under their own privacy policies and only receive what's needed to return a result — we do not sell or share your data for advertising purposes.</p>
@@ -82,6 +87,7 @@
 
     <h2>5. Data retention</h2>
     <p>Scan history is stored on your device and, if you're signed in, associated with your account so it syncs across sessions. You can delete your scan history in-app. Account data is retained until you delete your account; you can request deletion at any time by contacting us below.</p>
+    <p><strong>Forwarded emails (Forward-to-Scan) are not stored.</strong> Content you forward is processed in memory to generate a verdict and is discarded immediately afterward — we keep no copy of the email itself, only a temporary daily count of how many scans you've used.</p>
 
     <h2>6. Your choices</h2>
     <ul>
