@@ -100,26 +100,6 @@ function checkCert(host) {
   });
 }
 
-async function checkGitHubPages(owner, repo) {
-  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/pages`, {
-    headers: {
-      Accept: 'application/vnd.github+json',
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-    },
-  });
-  if (!res.ok) {
-    problems.push(`${repo}: Pages API request failed (HTTP ${res.status})`);
-    return;
-  }
-  const data = await res.json();
-  const certState = data.https_certificate?.state;
-  if (!certState || (certState !== 'issued' && certState !== 'approved')) {
-    problems.push(`${repo}: GitHub Pages HTTPS cert state is "${certState ?? 'unknown'}" (not issued)`);
-  } else {
-    ok.push(`${repo}: Pages HTTPS cert state "${certState}"`);
-  }
-}
-
 async function main() {
   await Promise.all([
     checkSightengine().catch((e) => problems.push(`Sightengine: ${e.message}`)),
@@ -129,7 +109,6 @@ async function main() {
     checkRailwayServer().catch((e) => problems.push(`Railway server: ${e.message}`)),
     checkCert('officialverifyguard.com'),
     checkCert('scampedia.net'),
-    checkGitHubPages('nolanickelliott02-collab', 'officialverifyguard').catch((e) => problems.push(`Pages check: ${e.message}`)),
   ]);
 
   console.log('--- OK ---');
