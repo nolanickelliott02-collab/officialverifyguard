@@ -8,8 +8,9 @@
 <link rel="icon" href="assets/logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="scam-scene.css" />
 </head>
 <body>
 
@@ -33,19 +34,90 @@
 </header>
 
 <main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="badge"><span class="dot"></span> Built for iOS 18+</div>
-      <img class="hero-logo" src="assets/logo.png" alt="VerifyGuard app icon" />
-      <h1>Know what's real.<br /><span>Before you trust it.</span></h1>
-      <p class="lead">VerifyGuard analyzes photos, links, and news in seconds — flagging AI-generated deepfakes, scam attempts, and misinformation with on-device intelligence and real-time threat data.</p>
-      <div class="cta-row">
-        <a href="#download" class="btn btn-primary">Get VerifyGuard</a>
-        <a href="#features" class="btn btn-ghost">See how it works</a>
+  <div class="scam-scene">
+    <div class="track" id="track">
+      <div class="stage">
+
+        <div class="intro" id="intro">
+          <div class="eyebrow">VerifyGuard · Live Scan</div>
+          <h1>A text arrives.<br><span class="dim">Something feels off.</span></h1>
+          <p>Keep scrolling. Watch the scam get taken apart.</p>
+          <p style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Simulated demo — for illustration</p>
+        </div>
+
+        <div class="phone-wrap" id="phoneWrap">
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="screen">
+              <div class="msg-header">
+                <div class="avatar">?</div>
+                <div class="sender">Unknown</div>
+                <div class="num">+1 (830) 555-0164</div>
+              </div>
+              <div class="msg-body" id="msgBody" style="will-change:filter,opacity">
+                <div class="time-stamp">Today 4:47 PM</div>
+                <div class="bubble" id="bubble">
+                  Hi grandma, it's me. I'm in trouble and
+                  <span class="flag-word" data-flag="1">I need money right now</span>.
+                  <span class="flag-word warn" data-flag="2">Please don't tell mom or dad.</span>
+                  Can you buy
+                  <span class="flag-word" data-flag="3">Apple gift cards</span>
+                  and send me the codes? Hurry, I only have an hour.
+                </div>
+              </div>
+              <div class="scanline" id="scanline"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout co-1" id="c1">
+          <div class="tag">Red flag · Urgency</div>
+          <div class="body">Pressure to act "right now" is the #1 scam signature. Real emergencies don't run on timers.</div>
+        </div>
+        <div class="callout warn co-2" id="c2">
+          <div class="tag">Red flag · Secrecy</div>
+          <div class="body">"Don't tell anyone" isolates you from the people who would spot the scam instantly.</div>
+        </div>
+        <div class="callout co-3" id="c3">
+          <div class="tag">Red flag · Untraceable payment</div>
+          <div class="body">Gift card codes are cash that can't be reversed. No real family member asks for them.</div>
+        </div>
+
+        <div class="verdict">
+          <div class="stamp" id="stamp">
+            <div class="box">
+              <div class="word">SCAM</div>
+              <div class="conf">CONFIDENCE <b>94%</b> · GRANDPARENT SCAM</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scroll-hint" id="hint">
+          <span>Scroll</span>
+          <div class="bar"></div>
+        </div>
+
       </div>
-      <p class="hero-note">Free to start · No account required to try · iPhone &amp; Control Center widget</p>
     </div>
-  </section>
+
+    <section class="after">
+      <div class="after-inner">
+        <div class="eyebrow">Why it matters</div>
+        <h2>You just spotted it in seconds.<br>Most people don't.</h2>
+        <p class="lede">VerifyGuard runs this kind of analysis on photos, links, and pasted text — combining on-device checks with trusted detection services — so the people you love don't have to guess.</p>
+        <div class="stat-row">
+          <div class="stat"><div class="n">1 in 3</div><div class="l">Adults over 60 targeted by scammers</div></div>
+          <div class="stat"><div class="n">$10B+</div><div class="l">Lost to scams every year in the US</div></div>
+          <div class="stat"><div class="n">$0</div><div class="l">To start — no account required to try</div></div>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#download">Get VerifyGuard</a>
+          <a class="btn btn-ghost" href="https://scampedia.net/scampedia.html">Browse Scampedia</a>
+        </div>
+        <div class="footnote">Free to start · No account required to try · iPhone &amp; Control Center widget<br><span style="opacity:.7">The scan shown above is a simulated demonstration. Detection results vary by content.</span></div>
+      </div>
+    </section>
+  </div>
 
   <section id="features">
     <div class="wrap">
@@ -191,6 +263,97 @@
   document.getElementById('navToggle').addEventListener('click', function () {
     document.getElementById('navLinks').classList.toggle('open');
   });
+</script>
+
+<script>
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+
+  const track = document.getElementById('track');
+  const wrap  = document.getElementById('phoneWrap');
+  const body  = document.getElementById('msgBody');
+  const intro = document.getElementById('intro');
+  const hint  = document.getElementById('hint');
+  const scan  = document.getElementById('scanline');
+  const stamp = document.getElementById('stamp');
+  const call  = [document.getElementById('c1'), document.getElementById('c2'), document.getElementById('c3')];
+  const flags = document.querySelectorAll('.scam-scene .flag-word');
+
+  const lerp  = (a,b,t)=>a+(b-a)*t;
+  const clamp = (v,lo,hi)=>Math.min(hi,Math.max(lo,v));
+  // remap p from [a,b] -> [0,1] with easing
+  const seg = (p,a,b)=>clamp((p-a)/(b-a),0,1);
+  const easeOut = t=>1-Math.pow(1-t,3);
+  const easeInOut = t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+
+  let ticking = false;
+
+  function frame(){
+    ticking = false;
+    const rect = track.getBoundingClientRect();
+    const total = track.offsetHeight - window.innerHeight;
+    const p = clamp(-rect.top / total, 0, 1);
+
+    // Phase A (0–.12): intro fades, phone idle float
+    const introO = 1 - seg(p, .04, .12);
+    intro.style.opacity = introO;
+    hint.style.opacity  = 1 - seg(p, .02, .08);
+
+    // Message content: blurred + dimmed under the intro, sharpens as you scroll in
+    const focus = easeOut(seg(p, .08, .26));
+    body.style.filter  = 'blur(' + lerp(9, 0, focus) + 'px)';
+    body.style.opacity = lerp(.35, 1, focus);
+
+    // Phase B (.10–.42): zoom into the phone
+    const z = easeInOut(seg(p, .10, .42));
+    const scale = lerp(0.9, 2.35, z);
+    const ty    = lerp(0, 6, z); // drift toward message
+    // subtle idle float before zoom kicks in
+    const idle = (1 - z) * Math.sin(performance.now()/900) * 6;
+    wrap.style.transform =
+      'translateY(' + (idle + ty) + 'px) scale(' + scale + ') rotateX(' + lerp(6,0,z) + 'deg)';
+
+    // Phase C (.34–.52): scan sweep
+    const s = seg(p, .34, .52);
+    scan.style.opacity = s > 0 && s < 1 ? 1 : (s >= 1 ? 0 : 0);
+    scan.style.setProperty('--y', (s*100) + '%');
+
+    // Phase D (.46–.74): flags light + callouts pop, one per window
+    const flagWindows = [[.46,.52],[.55,.61],[.64,.70]];
+    flagWindows.forEach(function(w,i){
+      const on = p >= w[0];
+      flags[i].classList.toggle('lit', on);
+      if (flags[i].classList.contains('warn')) flags[i].classList.toggle('warn-lit', on);
+      call[i].classList.toggle('show', on && p < .84);
+    });
+
+    // Phase E (.78–.90): verdict stamp slams
+    const v = easeOut(seg(p, .78, .88));
+    stamp.style.opacity = v;
+    stamp.style.filter = 'blur(' + lerp(6,0,v) + 'px)';
+    stamp.style.transform = 'scale(' + lerp(2.6,1,v) + ') rotate(' + lerp(-8,-3,v) + 'deg)';
+
+    // Phase F (.90–1): gentle pull-back so hand-off to next section feels natural
+    const out = seg(p, .90, 1);
+    if (out > 0){
+      const sc = lerp(scale, scale*.92, out);
+      wrap.style.transform = 'translateY(' + ty + 'px) scale(' + sc + ')';
+      wrap.style.opacity = 1 - out*.35;
+    } else {
+      wrap.style.opacity = 1;
+    }
+  }
+
+  function onScroll(){
+    if(!ticking){ ticking = true; requestAnimationFrame(frame); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+
+  // keep the idle float alive pre-zoom
+  (function loop(){ onScroll(); requestAnimationFrame(loop); })();
+})();
 </script>
 
 </body>

@@ -1,0 +1,292 @@
+/* Scrollytelling hero scene ("Anatomy of a Scam") — scoped entirely under
+   .scam-scene so it can't leak into or collide with the rest of the site's
+   styles.css (notably .btn/.btn-primary/.btn-ghost, which the site already
+   defines with a different blue-glow look; the scene needs its own teal
+   version here, kept local via descendant-selector specificity). Colors,
+   fonts, and dimensions are ported unchanged from the approved demo. */
+
+/* This has to live on body, not .scam-scene itself — overflow-x:hidden on an
+   ancestor of a position:sticky element is a well-known footgun: per spec,
+   setting only overflow-x forces overflow-y to compute as 'auto' too, which
+   turns that ancestor into a scroll container and breaks the sticky child's
+   containing block, so the "stuck" zoom effect just silently stops working.
+   Safe on body/html since that's the real root scrolling context. */
+body{ overflow-x:hidden; }
+
+.scam-scene{
+  --bg:#070B12;
+  --panel:#0E141F;
+  --line:#1B2434;
+  --text:#E8EEF6;
+  --muted:#8A94A6;
+  --scan:#3EE0C8;
+  --danger:#FF4D5E;
+  --warn:#FFB020;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;
+}
+.scam-scene *{box-sizing:border-box}
+.scam-scene ::selection{background:rgba(62,224,200,.25)}
+
+/* ---------- SCROLL TRACK ---------- */
+.scam-scene .track{height:560vh;position:relative}
+.scam-scene .stage{
+  position:sticky;top:0;height:100vh;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  perspective:1200px;
+}
+
+/* ambient grid */
+.scam-scene .stage::before{
+  content:"";position:absolute;inset:-50%;
+  background-image:
+    linear-gradient(rgba(62,224,200,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(62,224,200,.04) 1px,transparent 1px);
+  background-size:64px 64px;
+  transform:rotateX(60deg) translateY(20%);
+  mask-image:radial-gradient(ellipse 60% 50% at 50% 60%,black,transparent);
+  -webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 60%,black,transparent);
+}
+
+/* ---------- INTRO TEXT ---------- */
+.scam-scene .intro{
+  position:absolute;z-index:5;text-align:center;
+  transition:opacity .1s linear;
+  padding:0 24px;
+}
+.scam-scene .intro .eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--scan);margin-bottom:16px;
+}
+.scam-scene .intro h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(34px,6.5vw,72px);font-weight:700;line-height:1.05;
+  letter-spacing:-.02em;
+}
+.scam-scene .intro h1 .dim{color:var(--muted)}
+.scam-scene .intro p{margin-top:18px;color:var(--muted);font-size:clamp(15px,2vw,18px)}
+.scam-scene .scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  z-index:6;display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;
+}
+.scam-scene .scroll-hint .bar{
+  width:1px;height:44px;background:linear-gradient(var(--scan),transparent);
+  animation:scamSceneDrip 1.6s ease-in-out infinite;
+}
+@keyframes scamSceneDrip{0%{transform:scaleY(.2);transform-origin:top}50%{transform:scaleY(1)}100%{transform:scaleY(.2);transform-origin:bottom}}
+
+/* ---------- PHONE ---------- */
+.scam-scene .phone-wrap{
+  position:relative;z-index:4;
+  will-change:transform;
+  transform-origin:center 38%;
+}
+.scam-scene .phone{
+  width:min(300px,72vw);aspect-ratio:9/19;
+  background:linear-gradient(160deg,#121A28,#0B111C);
+  border:1px solid var(--line);
+  border-radius:44px;
+  padding:14px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.04) inset,
+    0 40px 120px rgba(0,0,0,.7),
+    0 0 80px rgba(62,224,200,.06);
+  position:relative;
+}
+.scam-scene .phone .notch{
+  position:absolute;top:14px;left:50%;transform:translateX(-50%);
+  width:34%;height:22px;background:#05080D;border-radius:12px;z-index:3;
+}
+.scam-scene .screen{
+  width:100%;height:100%;
+  background:var(--panel);
+  border-radius:32px;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  position:relative;
+}
+.scam-scene .msg-header{
+  padding:38px 16px 12px;text-align:center;
+  border-bottom:1px solid var(--line);
+  flex-shrink:0;
+}
+.scam-scene .msg-header .avatar{
+  width:34px;height:34px;border-radius:50%;
+  background:#232E42;margin:0 auto 6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--muted);
+}
+.scam-scene .msg-header .sender{font-size:12px;font-weight:600}
+.scam-scene .msg-header .num{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted)}
+.scam-scene .msg-body{flex:1;padding:16px 12px;display:flex;flex-direction:column;gap:10px}
+.scam-scene .bubble{
+  background:#1A2333;
+  border:1px solid var(--line);
+  border-radius:16px;border-bottom-left-radius:4px;
+  padding:12px 13px;
+  font-size:12.5px;line-height:1.55;
+  max-width:94%;
+  position:relative;
+}
+.scam-scene .bubble .flag-word{
+  position:relative;border-radius:4px;padding:0 2px;
+  transition:background .2s,color .2s,box-shadow .2s;
+}
+.scam-scene .bubble .flag-word.lit{
+  background:rgba(255,77,94,.16);
+  color:#FF8B96;
+  box-shadow:0 0 0 1px rgba(255,77,94,.45);
+}
+.scam-scene .bubble .flag-word.lit.warn-lit{
+  background:rgba(255,176,32,.14);color:#FFCB66;
+  box-shadow:0 0 0 1px rgba(255,176,32,.4);
+}
+.scam-scene .time-stamp{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);text-align:center}
+
+/* scan sweep */
+.scam-scene .scanline{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(62,224,200,0) calc(var(--y,0%) - 12%),
+    rgba(62,224,200,.14) var(--y,0%),
+    rgba(62,224,200,0) calc(var(--y,0%) + 2%),
+    transparent 100%);
+  opacity:0;
+}
+.scam-scene .scanline::after{
+  content:"";position:absolute;left:0;right:0;top:var(--y,0%);
+  height:1.5px;background:var(--scan);
+  box-shadow:0 0 12px var(--scan),0 0 32px rgba(62,224,200,.5);
+}
+
+/* ---------- CALLOUTS ---------- */
+.scam-scene .callout{
+  position:absolute;z-index:7;
+  width:min(230px,58vw);
+  background:rgba(10,15,24,.92);
+  backdrop-filter:blur(8px);
+  border:1px solid var(--line);
+  border-left:2px solid var(--danger);
+  border-radius:10px;
+  padding:11px 13px;
+  opacity:0;transform:translateY(14px) scale(.96);
+  transition:opacity .25s ease,transform .25s ease;
+  pointer-events:none;
+}
+.scam-scene .callout.warn{border-left-color:var(--warn)}
+.scam-scene .callout.show{opacity:1;transform:translateY(0) scale(1)}
+.scam-scene .callout .tag{
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--danger);margin-bottom:4px;
+}
+.scam-scene .callout.warn .tag{color:var(--warn)}
+.scam-scene .callout .body{font-size:12px;line-height:1.5;color:var(--text)}
+.scam-scene .co-1{top:16%;left:4%}
+.scam-scene .co-2{top:38%;right:3%}
+.scam-scene .co-3{bottom:20%;left:5%}
+@media(min-width:900px){
+  .scam-scene .co-1{top:22%;left:calc(50% - 460px)}
+  .scam-scene .co-2{top:42%;right:calc(50% - 470px)}
+  .scam-scene .co-3{bottom:24%;left:calc(50% - 440px)}
+}
+
+/* ---------- VERDICT ---------- */
+.scam-scene .verdict{
+  position:absolute;z-index:9;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;
+}
+.scam-scene .verdict .stamp{
+  text-align:center;
+  transform:scale(2.6) rotate(-8deg);
+  opacity:0;
+  filter:blur(6px);
+}
+.scam-scene .verdict .stamp .box{
+  display:inline-block;
+  border:3px solid var(--danger);
+  border-radius:12px;
+  padding:14px 34px;
+  background:rgba(7,11,18,.82);
+  backdrop-filter:blur(6px);
+  box-shadow:0 0 60px rgba(255,77,94,.35);
+}
+.scam-scene .verdict .stamp .word{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:clamp(44px,9vw,88px);letter-spacing:.06em;
+  color:var(--danger);line-height:1;
+}
+.scam-scene .verdict .stamp .conf{
+  font-family:'JetBrains Mono',monospace;font-size:clamp(11px,1.6vw,14px);
+  letter-spacing:.22em;color:var(--text);margin-top:10px;
+}
+.scam-scene .verdict .stamp .conf b{color:var(--danger)}
+
+/* ---------- AFTER SECTION (stats + CTA) ---------- */
+.scam-scene .after{
+  position:relative;z-index:10;
+  background:linear-gradient(var(--bg) 0%,#0A1019 100%);
+  border-top:1px solid var(--line);
+}
+.scam-scene .after-inner{
+  max-width:880px;margin:0 auto;
+  padding:110px 24px 130px;text-align:center;
+}
+.scam-scene .after .eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--scan);margin-bottom:18px;
+}
+.scam-scene .after h2{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(30px,5vw,54px);font-weight:700;letter-spacing:-.02em;line-height:1.08;
+}
+.scam-scene .after p.lede{
+  margin:20px auto 0;max-width:560px;
+  color:var(--muted);font-size:clamp(15px,2vw,18px);line-height:1.65;
+}
+.scam-scene .stat-row{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:52px;
+}
+.scam-scene .stat{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  padding:22px 26px;min-width:180px;
+}
+.scam-scene .stat .n{
+  font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;color:var(--scan);
+}
+.scam-scene .stat .l{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.scam-scene .cta-row{margin-top:56px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.scam-scene .btn{
+  display:inline-block;padding:15px 30px;border-radius:12px;
+  font-weight:600;font-size:15.5px;text-decoration:none;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.scam-scene .btn:focus-visible{outline:2px solid var(--scan);outline-offset:3px}
+.scam-scene .btn-primary{
+  background:var(--scan);color:#04110E;
+  box-shadow:0 8px 30px rgba(62,224,200,.25);
+}
+.scam-scene .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(62,224,200,.35)}
+.scam-scene .btn-ghost{
+  border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.02);
+}
+.scam-scene .btn-ghost:hover{transform:translateY(-2px);border-color:#2A3650}
+.scam-scene .footnote{margin-top:34px;font-size:12px;color:var(--muted)}
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce){
+  .scam-scene .track{height:auto}
+  .scam-scene .stage{position:relative;height:auto;min-height:100vh;padding:80px 0}
+  .scam-scene .intro{position:relative;margin-bottom:48px}
+  .scam-scene .phone-wrap{transform:none!important}
+  .scam-scene .callout{position:relative;opacity:1;transform:none;margin:14px auto;inset:auto}
+  .scam-scene .verdict{position:relative;inset:auto;margin-top:40px}
+  .scam-scene .verdict .stamp{transform:none;opacity:1;filter:none}
+  .scam-scene .scanline,.scam-scene .scroll-hint{display:none}
+  .scam-scene .bubble .flag-word{background:rgba(255,77,94,.16);color:#FF8B96}
+}
