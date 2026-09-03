@@ -30,21 +30,6 @@ async function checkGNews() {
   }
 }
 
-async function checkVirusTotal() {
-  const res = await fetch('https://www.virustotal.com/api/v3/domains/example.com', {
-    headers: { 'x-apikey': process.env.VIRUSTOTAL_API_KEY },
-  });
-  if (res.status === 401 || res.status === 403) {
-    problems.push(`VirusTotal: auth error (HTTP ${res.status})`);
-  } else if (res.status === 429) {
-    problems.push('VirusTotal: rate/quota limit hit (HTTP 429)');
-  } else if (!res.ok) {
-    problems.push(`VirusTotal: unexpected HTTP ${res.status}`);
-  } else {
-    ok.push('VirusTotal key valid');
-  }
-}
-
 async function checkAnthropic() {
   const res = await fetch('https://api.anthropic.com/v1/models', {
     headers: {
@@ -104,7 +89,6 @@ async function main() {
   await Promise.all([
     checkSightengine().catch((e) => problems.push(`Sightengine: ${e.message}`)),
     checkGNews().catch((e) => problems.push(`GNews: ${e.message}`)),
-    checkVirusTotal().catch((e) => problems.push(`VirusTotal: ${e.message}`)),
     checkAnthropic().catch((e) => problems.push(`Anthropic: ${e.message}`)),
     checkRailwayServer().catch((e) => problems.push(`Railway server: ${e.message}`)),
     checkCert('officialverifyguard.com'),
