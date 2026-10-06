@@ -6,9 +6,10 @@
   --border-soft: #1a2032;
   --text: #eef1f8;
   --text-dim: #9aa3b8;
-  --text-faint: #626c85;
+  --text-faint: #7f89a0; /* was #626c85 (3.8:1); now 5.2:1+ on every background (WCAG AA) */
   --brand: #2d7eff;
   --brand-light: #5b9dff;
+  --brand-strong: #1c66e3; /* backgrounds behind white text: 5.2:1 (WCAG AA) */
   --brand-glow: #2d7eff55;
   --success: #2ecc8f;
   --warn: #ffb547;
@@ -83,7 +84,7 @@ header.site {
 .nav-links a:hover { color: var(--text); }
 
 .nav-cta {
-  background: var(--brand);
+  background: var(--brand-strong);
   color: #fff !important;
   padding: 9px 18px;
   border-radius: 999px;
@@ -156,7 +157,7 @@ header.site {
   margin: 0 0 18px;
 }
 .hero h1 span {
-  background: linear-gradient(135deg, var(--brand-light), var(--brand));
+  background: linear-gradient(135deg, #1f6ef0, #1a62db); /* white text 4.6:1+ across the gradient (was 2.6:1 at the light end) */
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -193,7 +194,7 @@ header.site {
   color: #fff !important;
   box-shadow: 0 8px 30px var(--brand-glow);
 }
-.btn-primary:hover { filter: brightness(1.08); }
+.btn-primary:hover { filter: brightness(0.94); }
 .btn-ghost {
   background: #ffffff08;
   border-color: var(--border);
@@ -268,7 +269,7 @@ section.tight { padding: 56px 0; }
   position: absolute;
   top: -12px; left: 50%;
   transform: translateX(-50%);
-  background: var(--brand);
+  background: var(--brand-strong);
   color: #fff;
   font-size: 11.5px;
   font-weight: 700;
@@ -359,3 +360,28 @@ footer.site {
 .footer-links a { color: var(--text-dim); font-size: 14px; }
 .footer-links a:hover { color: var(--text); }
 .footer-copy { color: var(--text-faint); font-size: 13px; margin-top: 18px; }
+
+/* ---- Accessibility (2026-10-06) ---- */
+/* Visible keyboard focus everywhere; mouse clicks don't show it. */
+:focus-visible {
+  outline: 3px solid var(--brand-light);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+/* "Skip to main content" — first thing a keyboard or screen-reader user reaches. */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 1000;
+  background: var(--brand-strong);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus { top: 12px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

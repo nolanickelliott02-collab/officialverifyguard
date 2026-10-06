@@ -6,17 +6,16 @@
 <title>Support — VerifyGuard</title>
 <meta name="description" content="Get help with VerifyGuard — FAQs, troubleshooting, and direct contact with our support team." />
 <link rel="icon" href="assets/logo.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <header class="site">
   <div class="wrap nav">
     <a href="index.html" class="brand">
-      <img src="assets/logo.png" alt="VerifyGuard logo" />
+      <img src="assets/logo.png" alt="" />
       VerifyGuard
     </a>
     <nav class="nav-links" id="navLinks">
@@ -27,11 +26,11 @@
       <a href="terms.html">Terms</a>
       <a href="https://apps.apple.com/us/app/verifyguard-scam-detector/id6794175364" class="nav-cta">Get the App</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-controls="navLinks" aria-expanded="false">☰</button>
   </div>
 </header>
 
-<main>
+<main id="main">
   <section class="hero" style="padding-top:64px; padding-bottom:20px;">
     <div class="wrap">
       <div class="badge"><span class="dot"></span> We usually reply within 1–2 business days</div>
@@ -87,6 +86,7 @@
         <div class="cta-row" style="margin-bottom:0;">
           <a href="mailto:verifyguardsupport@gmail.com" class="btn btn-primary">verifyguardsupport@gmail.com</a>
         </div>
+        <p class="hero-note" style="margin-top:18px;">VerifyGuard is a product of Verify Guard Apps LLC, a Louisiana limited liability company. Billing questions: see our <a href="refund.html">Refund Policy</a>.</p>
       </div>
     </div>
   </section>
@@ -96,23 +96,26 @@
   <div class="wrap">
     <div class="footer-row">
       <div class="footer-brand">
-        <img src="assets/logo.png" alt="VerifyGuard" />
+        <img src="assets/logo.png" alt="" />
         VerifyGuard
       </div>
       <div class="footer-links">
         <a href="support.html">Support</a>
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms of Use</a>
+        <a href="refund.html">Refund Policy</a>
+        <a href="cookies.html">Cookie Policy</a>
         <a href="mailto:verifyguardsupport@gmail.com">Contact</a>
       </div>
     </div>
-    <div class="footer-copy">© 2026 VerifyGuard. All rights reserved.</div>
+    <div class="footer-copy">© 2026 Verify Guard Apps LLC, a Louisiana limited liability company. All rights reserved. VerifyGuard is a product of Verify Guard Apps LLC.</div>
   </div>
 </footer>
 
 <script>
   document.getElementById('navToggle').addEventListener('click', function () {
-    document.getElementById('navLinks').classList.toggle('open');
+    var open = document.getElementById('navLinks').classList.toggle('open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 </script>
 

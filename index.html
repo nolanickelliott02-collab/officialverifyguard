@@ -6,18 +6,17 @@
 <title>VerifyGuard — AI Scam &amp; Deepfake Detection</title>
 <meta name="description" content="VerifyGuard scans photos, links, and news for scams, deepfakes, and misinformation in real time — powered by on-device AI and trusted threat intelligence." />
 <link rel="icon" href="assets/logo.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="scam-scene.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <header class="site">
   <div class="wrap nav">
     <a href="index.html" class="brand">
-      <img src="assets/logo.png" alt="VerifyGuard logo" />
+      <img src="assets/logo.png" alt="" />
       VerifyGuard
     </a>
     <nav class="nav-links" id="navLinks">
@@ -29,11 +28,11 @@
       <a href="terms.html">Terms</a>
       <a href="https://apps.apple.com/us/app/verifyguard-scam-detector/id6794175364" class="nav-cta">Get the App</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-controls="navLinks" aria-expanded="false">☰</button>
   </div>
 </header>
 
-<main>
+<main id="main">
   <div class="scam-scene">
     <div class="track" id="track">
       <div class="stage">
@@ -106,8 +105,8 @@
         <h2>You just spotted it in seconds.<br>Most people don't.</h2>
         <p class="lede">VerifyGuard runs this kind of analysis on photos, links, and pasted text — combining on-device checks with trusted detection services — so the people you love don't have to guess.</p>
         <div class="stat-row">
-          <div class="stat"><div class="n">1 in 3</div><div class="l">Adults over 60 targeted by scammers</div></div>
-          <div class="stat"><div class="n">$10B+</div><div class="l">Lost to scams every year in the US</div></div>
+          <div class="stat"><div class="n">$15.9B</div><div class="l">Reported lost to fraud in the US in 2025 (<a href="https://www.ftc.gov/news-events/news/press-releases/2026/03/ftc-testifies-joint-economic-committee-agencys-efforts-combat-fraud">FTC</a>)</div></div>
+          <div class="stat"><div class="n">$3.5B</div><div class="l">Reported lost to imposter scams in 2025 (<a href="https://www.ftc.gov/news-events/news/press-releases/2026/06/ftc-data-show-people-reported-losing-3-point-5-billion-imposter-scams-2025">FTC</a>)</div></div>
           <div class="stat"><div class="n">$0</div><div class="l">To start — no account required to try</div></div>
         </div>
         <div class="cta-row">
@@ -130,12 +129,12 @@
         <div class="card">
           <div class="icon">🖼️</div>
           <h3>Photo &amp; Deepfake Detection</h3>
-          <p>Scans images for AI generation, manipulation, and face/document tampering using on-device Vision plus cloud-grade AI detection.</p>
+          <p>Checks photos and videos for signs of AI generation using independent AI-image detection services, and reads any text in a screenshot for scam patterns.</p>
         </div>
         <div class="card">
           <div class="icon">🔗</div>
           <h3>Ad &amp; Link Scanner</h3>
-          <p>Checks any link against domain reputation, registration age, and known phishing/typosquat patterns before you tap it.</p>
+          <p>Checks a link and the page it opens for lookalike or impersonation domains, risky domain endings, missing HTTPS, and scam language before you tap it.</p>
         </div>
         <div class="card">
           <div class="icon">📰</div>
@@ -145,7 +144,7 @@
         <div class="card">
           <div class="icon">🧠</div>
           <h3>AI Pattern Brain</h3>
-          <p>Learns from emerging scam language — urgency cues, prize hooks, impersonation patterns — and flags them instantly.</p>
+          <p>Matches scans against a library of phrases scammers use — urgency cues, prize hooks, impersonation scripts — that grows as new scams are documented in Scampedia.</p>
         </div>
         <div class="card">
           <div class="icon">⚡</div>
@@ -154,8 +153,8 @@
         </div>
         <div class="card">
           <div class="icon">🛡️</div>
-          <h3>Real-Time Alerts</h3>
-          <p>Priority notifications on Pro and Guardian plans keep you ahead of active scam campaigns.</p>
+          <h3>New Scam Alerts</h3>
+          <p>Optional notifications when a new scam is added to Scampedia, on every plan, free included (requires a free account).</p>
         </div>
         <div class="card">
           <div class="icon">🕵️</div>
@@ -183,10 +182,10 @@
           <h3>Free</h3>
           <div class="price">$0<span>/mo</span></div>
           <ul>
-            <li>3 photo scans / day</li>
+            <li>3 scans / day (photo, link, or text)</li>
             <li>10 news scans / day</li>
             <li>3 Deep Investigation chats / day</li>
-            <li>On-device scam detection</li>
+            <li>Scam pattern and link checks</li>
             <li>Scampedia access</li>
           </ul>
         </div>
@@ -194,34 +193,32 @@
           <h3>Basic</h3>
           <div class="price">$9.99<span>/mo</span></div>
           <ul>
-            <li>20 photo scans / day</li>
+            <li>20 scans / day</li>
             <li>50 news scans / day</li>
             <li>10 Deep Investigation chats / day</li>
-            <li>AI image detection</li>
-            <li>Full AI pattern matching</li>
+            <li>AI image &amp; video detection</li>
           </ul>
         </div>
         <div class="plan popular">
-          <div class="tag">Most Popular</div>
+          <div class="tag">Recommended</div>
           <h3>Pro</h3>
           <div class="price">$19.99<span>/mo</span></div>
           <ul>
-            <li>75 photo scans / day</li>
+            <li>75 scans / day</li>
             <li>150 news scans / day</li>
             <li>20 Deep Investigation chats / day</li>
-            <li>Priority scam alerts</li>
-            <li>Real-time notifications</li>
+            <li>Everything in Basic</li>
           </ul>
         </div>
         <div class="plan">
           <h3>Guardian</h3>
           <div class="price">$29.99<span>/mo</span></div>
           <ul>
-            <li>200 photo scans / day</li>
+            <li>200 scans / day</li>
             <li>500 news scans / day</li>
             <li>30 Deep Investigation chats / day</li>
             <li>Forward-to-Scan (AI email checker)</li>
-            <li>Family sharing — up to 5 people</li>
+            <li>Apple Family Sharing — you plus up to 5 family members</li>
             <li>Everything in Pro</li>
           </ul>
         </div>
@@ -248,7 +245,7 @@
   <div class="wrap">
     <div class="footer-row">
       <div class="footer-brand">
-        <img src="assets/logo.png" alt="VerifyGuard" />
+        <img src="assets/logo.png" alt="" />
         VerifyGuard
       </div>
       <div class="footer-links">
@@ -256,16 +253,19 @@
         <a href="support.html">Support</a>
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms of Use</a>
+        <a href="refund.html">Refund Policy</a>
+        <a href="cookies.html">Cookie Policy</a>
         <a href="mailto:verifyguardsupport@gmail.com">Contact</a>
       </div>
     </div>
-    <div class="footer-copy">© 2026 VerifyGuard. All rights reserved.</div>
+    <div class="footer-copy">© 2026 Verify Guard Apps LLC, a Louisiana limited liability company. All rights reserved. VerifyGuard is a product of Verify Guard Apps LLC.</div>
   </div>
 </footer>
 
 <script>
   document.getElementById('navToggle').addEventListener('click', function () {
-    document.getElementById('navLinks').classList.toggle('open');
+    var open = document.getElementById('navLinks').classList.toggle('open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 </script>
 
