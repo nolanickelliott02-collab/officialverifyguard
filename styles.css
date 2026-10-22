@@ -336,7 +336,8 @@ section.tight { padding: 56px 0; }
 .legal h2 { font-size: 19px; margin: 36px 0 12px; color: var(--text); }
 .legal p, .legal li { color: var(--text-dim); font-size: 15px; line-height: 1.7; }
 .legal ul { padding-left: 20px; }
-.legal a { color: var(--brand-light); }
+.legal a { color: var(--brand-light); text-decoration: underline; }
+.faq details p a, .hero-note a { text-decoration: underline; }
 .legal table { width: 100%; border-collapse: collapse; margin: 16px 0; }
 .legal th, .legal td { text-align: left; padding: 10px 12px; border: 1px solid var(--border-soft); font-size: 14px; color: var(--text-dim); }
 .legal th { color: var(--text); background: #ffffff05; }

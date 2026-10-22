@@ -1,0 +1,91 @@
+<!-- Pending attorney review. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Accessibility — VerifyGuard</title>
+<meta name="description" content="VerifyGuard's accessibility goal for officialverifyguard.com, known limitations, and how to get help." />
+<link rel="icon" href="assets/logo.png" />
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site">
+  <div class="wrap nav">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="" />
+      VerifyGuard
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="https://apps.apple.com/us/app/verifyguard-scam-detector/id6794175364" class="nav-cta">Get the App</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-controls="navLinks" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap legal">
+    <h1>Accessibility Statement</h1>
+    <p class="updated">Last updated: October 22, 2026</p>
+    <p>officialverifyguard.com is run by Verify Guard Apps LLC (Louisiana). We want everyone to be able to learn about VerifyGuard and get help with it, including people who use screen readers, keyboards, magnification, or other assistive technology.</p>
+
+    <h2>Our goal</h2>
+    <p>We're working toward the Web Content Accessibility Guidelines (WCAG) 2.2 at Level AA for this website. That's a goal, not a claim: we haven't had the site independently audited, and we don't claim it fully meets that standard today.</p>
+
+    <h2>Last review</h2>
+    <p>We last reviewed this site on October 22, 2026. That review was an automated scan of every page with the axe-core accessibility checker, plus a manual check of alt text, color contrast, heading order, keyboard navigation, focus outlines, and the animated demo on the home page. We fixed the problems it found that we could fix right away, including low-contrast button text, links that only differed from surrounding text by color, and decorative icons being read aloud. We haven't yet tested the site with people who use assistive technology day to day.</p>
+
+    <h2>Known limitations</h2>
+    <ul>
+      <li><strong>Animated demo on the home page.</strong> The top of the home page is a long, scroll-driven animation of a scam text being analyzed. It takes a lot of scrolling to get past, so there's a "Skip the animated demo" link at the top of the page for keyboard and screen-reader users. Screen readers read all of the demo's text at once, including red-flag notes that only appear on screen as you scroll. If your device is set to reduce motion, the demo is shown as a still layout instead.</li>
+      <li><strong>Email addresses without JavaScript.</strong> Our hosting provider replaces email addresses on these pages with a protected link to stop spam bots, and a script turns them back into normal addresses. If JavaScript is turned off, you'll see "[email&#160;protected]" instead. Our address is verifyguardsupport at gmail dot com.</li>
+    </ul>
+    <!-- TODO(Nick): turning off Cloudflare's "Email Address Obfuscation" (Scrape Shield) for officialverifyguard.com would remove the second limitation; delete that bullet if you do. -->
+
+    <h2>The VerifyGuard app</h2>
+    <p>This statement covers the website. The iOS app has its own accessibility settings, including larger text, high contrast, and reading results out loud. If something in the app doesn't work for you, contact us the same way.</p>
+
+    <h2>Get help or another format</h2>
+    <p>If you have trouble using any part of this site, or you'd like a page (such as our <a href="privacy.html">Privacy Policy</a> or <a href="terms.html">Terms of Use</a>) in another format, email <a href="mailto:verifyguardsupport@gmail.com">verifyguardsupport@gmail.com</a>. Tell us which page and what went wrong, and what format would work for you. We aim to reply within 2 business days.</p>
+    <!-- TODO(Nick): confirm the 2-business-day reply goal (it matches the "1–2 business days" note on the Support page) and decide whether to promise a turnaround for alternative formats. -->
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-row">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="" />
+        VerifyGuard
+      </div>
+      <div class="footer-links">
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="refund.html">Refund Policy</a>
+        <a href="cookies.html">Cookie Policy</a>
+        <a href="accessibility.html">Accessibility</a>
+        <a href="mailto:verifyguardsupport@gmail.com">Contact</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 Verify Guard Apps LLC, a Louisiana limited liability company. All rights reserved. VerifyGuard is a product of Verify Guard Apps LLC.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function () {
+    var open = document.getElementById('navLinks').classList.toggle('open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>
+
+</body>
+</html>

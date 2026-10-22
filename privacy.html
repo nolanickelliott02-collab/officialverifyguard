@@ -1,3 +1,4 @@
+<!-- Pending attorney review. -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,7 +34,7 @@
 <main id="main">
   <div class="wrap legal">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: October 13, 2026</p>
+    <p class="updated">Last updated: October 22, 2026</p>
 
     <p>VerifyGuard is a product of Verify Guard Apps LLC, a Louisiana limited liability company ("VerifyGuard," "we," "our," "us"), which is responsible for the information described here. We build tools to help you identify scams, deepfakes, and misinformation. This Privacy Policy explains what information VerifyGuard collects, how it's used, and the choices you have. It applies to the VerifyGuard iOS app and the officialverifyguard.com website.</p>
 
@@ -53,7 +54,7 @@
     </ul>
     <p>VerifyGuard never looks through your photo library, email inbox, or browsing activity. Apart from the two features you choose to switch on — Live Guard (while you have screen recording running) and Message Filter (for texts from unknown senders, checked only on your device) — scans only happen when you start them, such as forwarding one email, sharing one item, or triggering Check My Screen.</p>
     <p><strong>Data to help improve scam detection (optional, off by default).</strong> In Settings, you can turn on "Help improve scam detection for everyone." If you do, when a scan finishes — and again if you tell us it was right or wrong — we save one record: the scan's text after we remove names, phone numbers, addresses, and account numbers on your device before anything is sent; what the scan decided and how confident it was; and your correction, if you gave one (including what it really was, if you tell us after marking a result wrong). For Deep Investigation, the record holds what you wrote and the report you received, with personal details removed the same way. We use these records to improve VerifyGuard's scam detection, including to train and test our own scam-detection AI model. We never save your photos, videos, or screenshots themselves for this — only the words found in them, with personal details already removed. This record is tied to a random code generated on your device and stored in your device's Keychain, not to your name, email, account, or Apple ID — we cannot connect it back to you. This feature is off by default, and you can turn it off anytime in Settings, which stops new records immediately and deletes the ones already saved from your device. Deleting requires your signed-in account; if you're signed out when you turn it off, the deletion completes the next time you open the app signed in.</p>
-    <p><strong>Usage data.</strong> We keep a daily count of scans used against your plan's limit, a log of each server scan request (which feature, which providers ran, your account email if signed in, and your IP address) for cost tracking and abuse prevention, and basic app diagnostics (crash logs, feature usage) to keep the service reliable.</p>
+    <p><strong>Usage data.</strong> We keep a daily count of scans used against your plan's limit, a log of each server scan request (which feature, which providers ran, your account email if signed in, and your IP address) for cost tracking and abuse prevention. The app doesn't include any third-party analytics or crash-reporting tools. If you've chosen in iPhone Settings to share analytics with app developers, Apple gives us crash reports and basic usage statistics.</p>
     <p><strong>Purchase information.</strong> Subscription purchases are handled entirely by Apple's App Store / StoreKit. We receive confirmation of your active tier, not your payment details.</p>
 
     <h2>2. How we use your information</h2>
@@ -73,19 +74,23 @@
     <table>
       <tr><th>Provider</th><th>What's shared</th><th>Purpose</th></tr>
       <tr><td>Sightengine</td><td>The photo or video you submit for a scan or share to VerifyGuard, a photo/video frame you attach to Deep Investigation, your latest screenshot (Check My Screen), or a Live Guard screen snapshot</td><td>AI-generated image / deepfake detection</td></tr>
-      <tr><td>Hive</td><td>The same photos, videos, frames, screenshots, and Live Guard screen snapshots, checked independently</td><td>A second AI-generated image / deepfake detection opinion</td></tr>
+      <tr><td>Hive</td><td>The photo or video you submit for a scan or share to VerifyGuard, your latest screenshot (Check My Screen), or a Live Guard screen snapshot. Hive does not receive Deep Investigation attachments.</td><td>A second AI-generated image / deepfake detection opinion</td></tr>
+      <!-- TODO(Nick): confirm REALITY_DEFENDER_API_KEY is set to a real key on Railway. If it isn't, Reality Defender receives nothing and this row should be removed. -->
       <tr><td>Reality Defender</td><td>A photo or video you scan or share to VerifyGuard, when this provider is enabled</td><td>An additional deepfake detection opinion</td></tr>
       <tr><td>GNews</td><td>Your news search query</td><td>Real-time article coverage and outlet bias data</td></tr>
-      <tr><td>Anthropic (Claude)</td><td>What you type into Deep Investigation, any URL/page content it looks up on your behalf, photo/video-frame images you attach, the forwarded email's content, sender, and subject, or — if you're signed in — text or the words in a photo you share or check with Check My Screen</td><td>AI-driven analysis to produce a Deep Investigation or Forward-to-Scan verdict</td></tr>
-      <tr><td>SendGrid</td><td>Your account email address and the resulting verdict</td><td>Delivering Forward-to-Scan results back to you by email</td></tr>
+      <tr><td>Anthropic (Claude)</td><td>What you type into Deep Investigation, any URL/page content it looks up on your behalf, photo/video-frame images you attach, the forwarded email's content, sender, and subject, or — if you're signed in — text or the words in a photo you share or check with Check My Screen. The AI may also run web searches (through Anthropic's web search tool) using terms it picks from your submission.</td><td>AI-driven analysis to produce a Deep Investigation, Forward-to-Scan, Share, or Check My Screen verdict</td></tr>
+      <tr><td>rdap.org</td><td>The domain name (for example, example.com) of a link involved in a Deep Investigation or a forwarded email — not the rest of the link or anything else you submitted</td><td>Looking up the domain's public registration record, such as how old it is</td></tr>
+      <tr><td>SendGrid (Twilio)</td><td>Emails you forward to your VerifyGuard address (they arrive through SendGrid before reaching our server), your account email address, sign-up verification codes, and Forward-to-Scan verdicts</td><td>Receiving forwarded emails, and sending verification codes and Forward-to-Scan results to you</td></tr>
       <tr><td>Apple (StoreKit / Sign in with Apple)</td><td>Purchase and/or sign-in identifiers, and Apple's signed proof of your subscription purchase</td><td>Subscription management, verifying your plan, and optional authentication</td></tr>
       <tr><td>Apple Push Notification service</td><td>A device token for your iPhone</td><td>Delivering notifications you've allowed</td></tr>
-      <tr><td>Railway</td><td>Everything our server handles, as described above</td><td>Hosting our server and database</td></tr>
+      <tr><td>Railway</td><td>Everything our server handles, as described above, including our account database (PostgreSQL)</td><td>Hosting our server and database</td></tr>
+      <tr><td>GitHub (GitHub Pages)</td><td>Your IP address and standard request details when the app downloads the Scampedia scam list from scampedia.net</td><td>Hosting the Scampedia data the app shows</td></tr>
+      <tr><td>Google (Gmail)</td><td>Emails you send to our support address, and their contents</td><td>Our support inbox</td></tr>
     </table>
     <p>These providers process the data under their own privacy policies and only receive what's needed to return a result — we do not sell or share your data for advertising purposes.</p>
 
     <h2>This website</h2>
-    <p>officialverifyguard.com doesn't use cookies, analytics, advertising trackers, or embedded third-party content, and it has no forms. Its fonts are served from this site itself, so visiting it doesn't contact Google or any other third party. The site is hosted on GitHub Pages, which keeps standard server logs (such as IP address and browser type) as any web host does; we don't receive or use them. See our <a href="cookies.html">Cookie Policy</a>.</p>
+    <p>officialverifyguard.com doesn't use cookies, analytics, advertising trackers, or embedded third-party content, and it has no forms. Its fonts are served from this site itself. The site is hosted on GitHub Pages and delivered through Cloudflare, so every visit passes through both companies' servers. Like any web host, they see standard request details (such as IP address and browser type); we don't receive or use them. Cloudflare also adds a small script that hides the email addresses on our pages from spam bots. See our <a href="cookies.html">Cookie Policy</a>.</p>
 
     <h2>4. Device permissions</h2>
     <table>
@@ -140,6 +145,7 @@
         <a href="terms.html">Terms of Use</a>
         <a href="refund.html">Refund Policy</a>
         <a href="cookies.html">Cookie Policy</a>
+        <a href="accessibility.html">Accessibility</a>
         <a href="mailto:verifyguardsupport@gmail.com">Contact</a>
       </div>
     </div>

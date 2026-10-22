@@ -12,6 +12,7 @@
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
+<a class="skip-link" href="#why">Skip the animated demo</a>
 
 <header class="site">
   <div class="wrap nav">
@@ -49,7 +50,7 @@
             <div class="notch"></div>
             <div class="screen">
               <div class="msg-header">
-                <div class="avatar">?</div>
+                <div class="avatar" aria-hidden="true">?</div>
                 <div class="sender">Unknown</div>
                 <div class="num">+1 (830) 555-0164</div>
               </div>
@@ -91,7 +92,7 @@
           </div>
         </div>
 
-        <div class="scroll-hint" id="hint">
+        <div class="scroll-hint" id="hint" aria-hidden="true">
           <span>Scroll</span>
           <div class="bar"></div>
         </div>
@@ -99,7 +100,7 @@
       </div>
     </div>
 
-    <section class="after">
+    <section class="after" id="why" tabindex="-1">
       <div class="after-inner">
         <div class="eyebrow">Why it matters</div>
         <h2>You just spotted it in seconds.<br>Most people don't.</h2>
@@ -127,44 +128,44 @@
       </div>
       <div class="grid">
         <div class="card">
-          <div class="icon">🖼️</div>
+          <div class="icon" aria-hidden="true">🖼️</div>
           <h3>Photo &amp; Deepfake Detection</h3>
           <p>Checks photos and videos for signs of AI generation using independent AI-image detection services, and reads any text in a screenshot for scam patterns.</p>
         </div>
         <div class="card">
-          <div class="icon">🔗</div>
+          <div class="icon" aria-hidden="true">🔗</div>
           <h3>Ad &amp; Link Scanner</h3>
           <p>Checks a link and the page it opens for lookalike or impersonation domains, risky domain endings, missing HTTPS, and scam language before you tap it.</p>
         </div>
         <div class="card">
-          <div class="icon">📰</div>
+          <div class="icon" aria-hidden="true">📰</div>
           <h3>News Bias &amp; Coverage Check</h3>
           <p>Cross-references breaking claims against real outlet coverage to surface bias and separate signal from spin.</p>
         </div>
         <div class="card">
-          <div class="icon">🧠</div>
+          <div class="icon" aria-hidden="true">🧠</div>
           <h3>AI Pattern Brain</h3>
           <p>Matches scans against a library of phrases scammers use — urgency cues, prize hooks, impersonation scripts — that grows as new scams are documented in Scampedia.</p>
         </div>
         <div class="card">
-          <div class="icon">⚡</div>
+          <div class="icon" aria-hidden="true">⚡</div>
           <h3>Control Center Widget</h3>
           <p>Scan clipboard text or links straight from Control Center without opening the app.</p>
         </div>
         <div class="card">
-          <div class="icon">🛡️</div>
+          <div class="icon" aria-hidden="true">🛡️</div>
           <h3>New Scam Alerts</h3>
           <p>Optional notifications when a new scam is added to Scampedia, on every plan, free included (requires a free account).</p>
         </div>
         <div class="card">
-          <div class="icon">🕵️</div>
+          <div class="icon" aria-hidden="true">🕵️</div>
           <h3>Deep Investigation</h3>
-          <p>Describe what happened in your own words, paste a link, or drop in a photo or video — an AI agent actually browses any link involved, checks how old the domain is, cross-references known scam databases, and writes you a full plain-English verdict with next steps, not just a score. Available on every plan, with more investigations per day on higher tiers.</p>
+          <p>Describe what happened in your own words, paste a link, or drop in a photo or video — an AI agent actually browses any link involved, checks how old the domain is, checks it against the Scampedia scam database, and writes you a full plain-English verdict with next steps, not just a score. Available on every plan, with more investigations per day on higher tiers.</p>
         </div>
         <div class="card">
-          <div class="icon">📧</div>
+          <div class="icon" aria-hidden="true">📧</div>
           <h3>Forward-to-Scan</h3>
-          <p>Forward any suspicious email to your personal VerifyGuard address and get an AI-written phishing verdict back by email. Included with Guardian.</p>
+          <p>Forward a suspicious email to your personal VerifyGuard address and get an AI-written phishing verdict back by email. Included with Guardian, up to 5 emails a day.</p>
         </div>
       </div>
     </div>
@@ -217,7 +218,9 @@
             <li>200 scans / day</li>
             <li>500 news scans / day</li>
             <li>30 Deep Investigation chats / day</li>
-            <li>Forward-to-Scan (AI email checker)</li>
+            <li>Forward-to-Scan (AI email checker, up to 5 emails / day)</li>
+            <li>Live Guard (checks your screen for scams while you have it on)</li>
+            <li>Message Filter (sorts likely scam texts from unknown senders, on your iPhone)</li>
             <li>Apple Family Sharing — you plus up to 5 family members</li>
             <li>Everything in Pro</li>
           </ul>
@@ -255,6 +258,7 @@
         <a href="terms.html">Terms of Use</a>
         <a href="refund.html">Refund Policy</a>
         <a href="cookies.html">Cookie Policy</a>
+        <a href="accessibility.html">Accessibility</a>
         <a href="mailto:verifyguardsupport@gmail.com">Contact</a>
       </div>
     </div>
@@ -355,8 +359,11 @@
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll, {passive:true});
 
-  // keep the idle float alive pre-zoom
-  (function loop(){ onScroll(); requestAnimationFrame(loop); })();
+  // keep the idle float alive pre-zoom, but only for the first 5 seconds —
+  // motion that runs on its own longer than that needs a way to stop it
+  // (WCAG 2.2.2); after that the scene only moves when the visitor scrolls.
+  const idleUntil = performance.now() + 5000;
+  (function loop(){ onScroll(); if (performance.now() < idleUntil) requestAnimationFrame(loop); })();
 })();
 </script>
 

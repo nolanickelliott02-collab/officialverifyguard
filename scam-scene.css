@@ -260,6 +260,8 @@ body{ overflow-x:hidden; }
   font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;color:var(--scan);
 }
 .scam-scene .stat .l{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.scam-scene .stat .l a{color:var(--scan);text-decoration:underline}
+.scam-scene .after:focus{outline:none}
 .scam-scene .cta-row{margin-top:56px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .scam-scene .btn{
   display:inline-block;padding:15px 30px;border-radius:12px;
@@ -268,7 +270,9 @@ body{ overflow-x:hidden; }
 }
 .scam-scene .btn:focus-visible{outline:2px solid var(--scan);outline-offset:3px}
 .scam-scene .btn-primary{
-  background:var(--scan);color:#04110E;
+  /* !important: styles.css sets .btn-primary{color:#fff !important}, which
+     put white text on this teal (1.65:1). Dark text here is 11:1+. */
+  background:var(--scan);color:#04110E !important;
   box-shadow:0 8px 30px rgba(62,224,200,.25);
 }
 .scam-scene .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(62,224,200,.35)}
